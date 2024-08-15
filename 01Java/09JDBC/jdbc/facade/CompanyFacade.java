@@ -1,8 +1,8 @@
-package com.facade;
+package com.mst.jdbc.facade;
 
-import com.dao.CompanyDAO;
-import com.exception.CompanyException;
-import com.model.Company;
+import com.mst.jdbc.dao.CompanyDAO;
+import com.mst.jdbc.exception.CompanyException;
+import com.mst.jdbc.model.Company;
 
 import java.sql.Connection;
 import java.util.List;

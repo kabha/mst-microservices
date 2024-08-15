@@ -1,4 +1,4 @@
-package com.model;
+package com.mst.jdbc.model;
 
 import java.util.Objects;
 

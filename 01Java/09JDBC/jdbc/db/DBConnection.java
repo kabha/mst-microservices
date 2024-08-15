@@ -1,4 +1,4 @@
-package com.db;
+package com.mst.jdbc.db;
 
 
 import java.sql.Connection;
@@ -8,16 +8,19 @@ import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-import com.exception.CompanyException;
+import com.mst.jdbc.exception.CompanyException;
 
 public class DBConnection {
 
 	private Set<Connection> connections = new LinkedHashSet<Connection>(10);
 	private static DBConnection instance;
-	private String driver = "com.mysql.jdbc.Driver";
+	// old driver
+//	private String driver = "com.mysql.jdbc.Driver";
+	// new driver
+	private String driver = "com.mysql.cj.jdbc.Driver";
 	private String url = "jdbc:mysql://localhost:3306/employee";
 	private String user = "root";
-	private String password = "1234";
+	private String password = "mysql";
 
 	private DBConnection() throws CompanyException {
 	    try {
@@ -42,7 +45,6 @@ public class DBConnection {
 
 		return instance;
 	}
-
 
 	 public synchronized Connection getConnection() throws CompanyException {
 	        Connection conn = null;

@@ -1,4 +1,4 @@
-package com.tsfn.dao;
+package com.mst.jdbc.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,19 +7,20 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Optional;
 
-import com.tsfn.db.ConnectionPool;
-import com.tsfn.exceptions.CompanyException;
-import com.tsfn.model.Company;
+import com.mst.jdbc.db.DBConnection;
+import com.mst.jdbc.db.DBConnectionIFC;
+import com.mst.jdbc.exception.CompanyException;
+import com.mst.jdbc.model.Company;
 
-public class CompanyDAO implements DBDAOIFC, CompanyDAOIFC {
+public class CompanyDAO implements DBConnectionIFC, CompanyDAOIFC {
 
 	private Connection connection; 
-	private ConnectionPool connectionPool;
+	private DBConnection connectionPool;
 	
 	
 	public CompanyDAO() throws CompanyException
 	{
-		connectionPool = ConnectionPool.createConnectionPoolInstance();
+		connectionPool = DBConnection.getInstance();
 	}
 	
 	
@@ -94,11 +95,10 @@ public class CompanyDAO implements DBDAOIFC, CompanyDAOIFC {
 	public synchronized void restoreConn(Optional<Connection> connection) throws CompanyException {
 		if (connection.isPresent()) {
             this.connection = connection.get();
-            connectionPool.returnConnection(connection.get());
+            connectionPool.restoreConnection(connection.get());
         } else {
             throw new CompanyException("Connection is null");
         }
-
 	}
 
 }

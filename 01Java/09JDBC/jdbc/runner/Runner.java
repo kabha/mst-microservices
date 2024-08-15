@@ -1,17 +1,14 @@
-package com.runner;
+package com.mst.jdbc.runner;
 
-import com.exception.CompanyException;
-import com.facade.CompanyFacade;
-import com.model.Company;
+import com.mst.jdbc.exception.CompanyException;
+import com.mst.jdbc.facade.CompanyFacade;
+import com.mst.jdbc.model.Company;
 
 public class Runner {
 
     public static void main(String[] args) {
         try {
             CompanyFacade companyFacade = new CompanyFacade();
-
-            // Dawod made a change !! 
-	    // Hello Tsofen!!
             Thread addCompanyThread1 = new Thread(() -> {
                 try {
                     companyFacade.addCompany(new Company("Company1", "email1@example.com", "password1"));

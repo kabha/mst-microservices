@@ -1,10 +1,10 @@
-package com.dao;
+package com.mst.jdbc.dao;
 
 import java.util.ArrayList;
 import java.util.Optional;
 
-import com.exception.CompanyException;
-import com.model.Company;
+import com.mst.jdbc.exception.CompanyException;
+import com.mst.jdbc.model.Company;
 
 public interface CompanyDAOIFC {
 

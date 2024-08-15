@@ -1,4 +1,4 @@
-package com.exception;
+package com.mst.jdbc.exception;
 
 import java.sql.SQLException;
 
