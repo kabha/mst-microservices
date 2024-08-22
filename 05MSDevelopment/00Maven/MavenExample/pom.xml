@@ -1,0 +1,135 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.mst</groupId>
+  <artifactId>MavenExample</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>Maven</name>
+  <description>Maven example </description>
+  
+  
+  <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <mysql.version>8.0.31</mysql.version>
+        <mail.version>1.6.2</mail.version>
+    </properties>
+
+    <!-- Dependencies -->
+    <dependencies>
+        <!-- MySQL JDBC Driver -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql.version}</version>
+        </dependency>
+
+        <!-- JavaMail API -->
+    <!--    <dependency>
+            <groupId>javax.mail</groupId>
+            <artifactId>javax.mail-api</artifactId>
+            <version>${mail.version}</version>
+        </dependency>-->
+        <dependency>
+    		<groupId>com.sun.mail</groupId>
+		    <artifactId>javax.mail</artifactId>
+		    <version>1.6.2</version>
+		</dependency>
+
+        <!-- Activation framework (required for JavaMail) -->
+        <dependency>
+            <groupId>com.sun.activation</groupId>
+            <artifactId>javax.activation</artifactId>
+            <version>1.2.0</version>
+        </dependency>
+
+        <!-- Test dependencies -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.2</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <!-- Plugins -->
+    <build>
+        <plugins>
+            <!-- Compiler Plugin -->
+           <!-- Is used to compile the Java source code of your project.based on the java version that you are specified , insure Compatibility and customizeable -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+            </plugin>
+
+            <!-- Surefire Plugin -->
+           <!-- is used to run unit tests during the build process. It is an integral part of the Maven build lifecycle and is executed during the test phase.-->
+           
+           <!--  Execute Unit Tests: It runs your project's unit tests, which are usually written using testing frameworks like JUnit or TestNG.
+           		 Reports: Generates detailed reports about the results of your tests, including how many tests passed, failed, or were skipped.
+				 Custom Configuration: Allows you to configure which tests to run, set up environment variables, and define system properties for your tests. -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.22.2</version>
+            </plugin>
+
+            <!-- Assembly Plugin -->
+            <!--  used to create distributable packages, such as ZIP, TAR, or JAR files, that include your project's compiled code along with its dependencies and other resources. -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>3.3.0</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>com.mst.Runner</mainClass>
+                        </manifest>
+                    </archive>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <!-- Build Profiles -->
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <properties>
+                <environment>development</environment>
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+        <profile>
+            <id>prod</id>
+            <properties>
+                <environment>production</environment>
+            </properties>
+        </profile>
+    </profiles>
+
+    <!-- Developers -->
+    <developers>
+        <developer>
+            <id>dev1</id>
+            <name>Daoud Kabha</name>
+            <email>DaoudKabha@gmail.com</email>
+        </developer>
+    </developers>
+
+    <!-- Mailing Lists -->
+    <mailingLists>
+        <mailingList>
+            <name>user-list</name>
+            <subscribe>kabhad82@gmail.com</subscribe>
+            <unsubscribe>Alie@gmail.com</unsubscribe>
+            <post>dawod.kabha@microtelecom.com</post>
+        </mailingList>
+    </mailingLists>
+
+</project>
