@@ -1,4 +1,5 @@
-package com.mst.controller;
+package com.mst.service.auth.requests;
+
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,7 +11,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class SignInRequest {
-    private String email;
+	private String email;
     private String password;
 }
-

@@ -1,4 +1,7 @@
-package com.mst.service;
+package com.mst.service.jwt;
+
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Service;
 
 import java.security.Key;
 import java.util.Date;
@@ -7,7 +10,6 @@ import java.util.Map;
 import java.util.function.Function;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -15,7 +17,8 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 
-public class JwtServiceImpl implements JWTService {
+@Service
+public class JWTServiceImpl implements JWTService{
 
 	@Value("${token.signing.key}")
 	private String jwtSigningKey;
@@ -29,7 +32,7 @@ public class JwtServiceImpl implements JWTService {
 	private String generateToken(Map<String, Object> extraClaims, UserDetails userDetails) {
 		return Jwts.builder().setClaims(extraClaims).setSubject(userDetails.getUsername())
 				.setIssuedAt(new Date(System.currentTimeMillis()))
-				.setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 24))
+				.setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 24))
 				.signWith(getSigningKey() , SignatureAlgorithm.HS256).compact();
 	}
 
@@ -68,5 +71,5 @@ public class JwtServiceImpl implements JWTService {
     }
 
 	
-	
+
 }

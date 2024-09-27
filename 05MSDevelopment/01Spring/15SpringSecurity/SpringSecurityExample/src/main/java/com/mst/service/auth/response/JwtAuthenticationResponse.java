@@ -1,4 +1,5 @@
-package com.mst.controller;
+package com.mst.service.auth.response;
+
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,5 +11,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class JwtAuthenticationResponse {
-    private String token;
+	   private String token;
 }
